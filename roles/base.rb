@@ -9,6 +9,7 @@
 
 # プロジェクト独自のベースレシピ
 include_recipe "../cookbooks/non_base/private_ip.rb"
+include_recipe "../cookbooks/non_base/routing.rb"
 include_recipe "../cookbooks/non_base/hostname.rb"
 include_recipe "../cookbooks/non_base/ldap.rb"
 include_recipe "../cookbooks/non_base/iptables.rb"
