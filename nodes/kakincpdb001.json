@@ -1,0 +1,12 @@
+{
+  "non_base": {
+    "ldap_group": "bbcharge",
+    "hostname": "kakincpdb001",
+    "private_ipaddress": "172.26.28.149",
+    "netmask": "255.255.255.128",
+    "gateway": "172.26.28.129"
+  },
+  "recipes": [
+    "./roles/base.rb"
+  ]
+}

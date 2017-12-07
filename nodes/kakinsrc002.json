@@ -1,0 +1,12 @@
+{
+  "non_base": {
+    "ldap_group": "campaign",
+    "hostname": "kakinsrc002",
+    "private_ipaddress": "172.26.31.140",
+    "netmask": "255.255.255.128",
+    "gateway": "172.26.31.129"
+  },
+  "recipes": [
+    "./roles/base.rb"
+  ]
+}

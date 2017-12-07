@@ -1,0 +1,12 @@
+{
+  "non_base": {
+    "ldap_group": "campaign",
+    "hostname": "mytesthost",
+    "private_ipaddress": "172.26.28.120",
+    "netmask": "255.255.255.128",
+    "gateway": "172.26.28.1"
+  },
+  "recipes": [
+    "./roles/base.rb"
+  ]
+}

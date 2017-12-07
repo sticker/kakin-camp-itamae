@@ -1,0 +1,13 @@
+DEVICE=ens192
+BOOTPROTO=static
+ONBOOT=yes
+IPADDR=<%=node['non_base']['private_ipaddress']%>
+NETMASK=<%=node['non_base']['netmask']%>
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+PREFIX=25
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=no
+NAME="System ens192"

@@ -1,0 +1,13 @@
+{
+  "non_base": {
+    "ldap_group": "kakinmng",
+    "hostname": "kakinsrc003",
+    "private_ipaddress": "172.26.31.141",
+    "netmask": "255.255.255.128",
+    "gateway": "172.26.31.129"
+  },
+  "recipes": [
+    "./roles/base.rb",
+    "./roles/docker.rb"
+  ]
+}

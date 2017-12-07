@@ -1,0 +1,43 @@
+# Ver.1.3(WEB) - 最終更新日:2013/12/03
+# Firewall configuration written by redhat-config-securitylevel
+# Manual customization of this file is not recommended.
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+:RH-Firewall-1-INPUT - [0:0]
+-A INPUT -j RH-Firewall-1-INPUT
+### 必須設定　消さないで！ - START
+	-A RH-Firewall-1-INPUT	-i	lo							-j	ACCEPT
+	-A RH-Firewall-1-INPUT	-m	state		--state		ESTABLISHED,RELATED 	-j 	ACCEPT
+	-A RH-Firewall-1-INPUT	-s	175.184.36.171	-p	tcp	-m	tcp	--dport	22	-j	ACCEPT
+	-A RH-Firewall-1-INPUT	-s	175.184.36.171	-p	tcp	-m	tcp	--dport	14022	-j	ACCEPT
+	-A RH-Firewall-1-INPUT	-s	175.184.38.16	-p	tcp	-m	tcp	--dport	22	-j	ACCEPT
+	-A RH-Firewall-1-INPUT	-s	175.184.38.16	-p	tcp	-m	tcp	--dport	14022	-j	ACCEPT
+	-A RH-Firewall-1-INPUT	-s	0.0.0.0/0.0.0.0	-p	tcp	-m	tcp	--dport	67:68	-j	ACCEPT
+	-A RH-Firewall-1-INPUT	-s	0.0.0.0/0.0.0.0	-p	udp	-m	udp	--dport	67:68	-j	ACCEPT
+### 必須設定　消さないで！ - END
+###
+### 任意設定　使用するポートにて行先頭の[#]を削除ください
+## 80,443,8080,8443/tcp通信許可
+#	-A RH-Firewall-1-INPUT	-s	0.0.0.0/0.0.0.0	-p	tcp	-m	tcp	--dport	80	-j	ACCEPT
+#	-A RH-Firewall-1-INPUT	-s	0.0.0.0/0.0.0.0	-p	tcp	-m	tcp	--dport	443	-j	ACCEPT
+#	-A RH-Firewall-1-INPUT	-s	0.0.0.0/0.0.0.0	-p	tcp	-m	tcp	--dport	8080	-j	ACCEPT
+#	-A RH-Firewall-1-INPUT	-s	0.0.0.0/0.0.0.0	-p	tcp	-m	tcp	--dport	8443	-j	ACCEPT
+##
+## モニタリングツール(munin , zabbix) 通信許可
+## 4949/tcp通信許可
+#	-A RH-Firewall-1-INPUT	-s	0.0.0.0/0.0.0.0	-p	tcp	-m	tcp	--dport	4949	-j	ACCEPT
+## 10050/tcp通信許可
+#	-A RH-Firewall-1-INPUT	-s	0.0.0.0/0.0.0.0	-p	tcp	-m	tcp	--dport	10050	-j	ACCEPT
+##
+## SSH(14022/tcp) 通信許可
+# PVLAN未契約の場合、送信元IPアドレス毎に行を足してください
+#	-A RH-Firewall-1-INPUT	-s	接続元サーバのIPアドレス	-p	tcp	-m	tcp	--dport	14022	-j	ACCEPT
+# PVLAN契約の場合、以下3行でフィルタ設定ください
+	-A RH-Firewall-1-INPUT	-s	10.0.0.0/255.0.0.0	-p	tcp	-m	tcp	--dport	14022	-j	ACCEPT
+	-A RH-Firewall-1-INPUT	-s	172.16.0.0/255.240.0.0	-p	tcp	-m	tcp	--dport	14022	-j	ACCEPT
+	-A RH-Firewall-1-INPUT	-s	192.168.0.0/255.255.0.0	-p	tcp	-m	tcp	--dport	14022	-j	ACCEPT
+-A RH-Firewall-1-INPUT -j REJECT --reject-with icmp-host-prohibite
+COMMIT
+
