@@ -30,6 +30,15 @@ template "/etc/docker/daemon.json" do
   action :create
 end
 
+execute "create bridge docker0" do
+  command <<-EOH
+brctl addbr docker0
+ip addr add 192.168.42.1/24 dev docker0
+ip link set dev docker0 up
+EOH
+  not_if "ip a show docker0"
+end
+
 service "docker" do
   action [:enable, :restart]
 end
